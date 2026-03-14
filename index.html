@@ -229,18 +229,8 @@ Avant toute chose, nous vous conseillons de relire le règlement.
 </div>
 
 <div class="field">
-<label>Steam HEX</label>
-<input type="text" id="steam">
-</div>
-
-<div class="field">
 <label>Date du bannissement</label>
 <input type="date" id="bandate">
-</div>
-
-<div class="field">
-<label>Nom du personnage RP</label>
-<input type="text" id="rpname">
 </div>
 
 <div class="field">
@@ -251,7 +241,7 @@ Avant toute chose, nous vous conseillons de relire le règlement.
 </div>
 
 <div class="field full">
-<label>Quel est votre intérêt pour le serveur ?</label>
+<label>Quelles sont vos motivations pour revenir sur le serveur ?</label>
 <textarea id="motivation" rows="6"></textarea>
 </div>
 
@@ -305,10 +295,8 @@ document.getElementById("banForm").addEventListener("submit",function(e){
 e.preventDefault();
 
 const discord = document.getElementById("discord").value;
-const steam = document.getElementById("steam").value;
 const banreason = document.getElementById("banreason").value;
 const bandate = document.getElementById("bandate").value;
-const rpname = document.getElementById("rpname").value;
 const staffban = document.getElementById("staffban").value;
 const motivation = document.getElementById("motivation").value;
 const reason = document.getElementById("reason").value;
@@ -324,12 +312,10 @@ body:JSON.stringify({
 content:
 "📩 Nouvelle demande de déban\n\n"+
 "Discord: "+discord+"\n"+
-"Steam: "+steam+"\n"+
 "Raison du ban: "+banreason+"\n"+
 "Date du ban: "+bandate+"\n"+
-"Nom RP: "+rpname+"\n"+
 "Staff: "+staffban+"\n"+
-"Motivation: "+motivation+"\n"+
+"Motivations: "+motivation+"\n"+
 "Pourquoi être débanni: "+reason+"\n"+
 "Type de ban: "+(bantype ? bantype.value : "Non précisé")
 })
