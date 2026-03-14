@@ -123,7 +123,7 @@ MVP FivePD
 <div class="container">
 
 <div class="title">
-🔨 Vous êtes banni(e) ?
+🔨 Demande de déban
 </div>
 
 <form id="debanForm">
@@ -139,7 +139,7 @@ MVP FivePD
 <label>Type de bannissement :</label>
 
 <input type="radio" name="ban" value="Permanent" onclick="toggleDate()"> Permanent
-<input type="radio" name="ban" value="Temporaire" onclick="toggleDate()"> Temporaire
+<input type="radio" name="ban" value="Définitif" onclick="toggleDate()"> Définitif
 
 </div>
 
@@ -152,9 +152,9 @@ MVP FivePD
 
 <div class="full">
 
-<label>Lien de la capture du ban txAdmin</label>
+<label>Capture du ban txAdmin</label>
 
-<input type="text" id="preuve" placeholder="Lien de votre capture (imgur, discord, etc)" required>
+<input type="file" id="preuve" accept="image/*,.pdf" required>
 
 </div>
 
@@ -198,7 +198,7 @@ function toggleDate(){
 
 const type = document.querySelector('input[name="ban"]:checked').value;
 
-if(type === "Temporaire"){
+if(type === "Permanent"){
 document.getElementById("dateBan").classList.remove("hidden");
 }else{
 document.getElementById("dateBan").classList.add("hidden");
@@ -216,11 +216,9 @@ motivation.addEventListener("input", () => {
 
 let remaining = 150 - motivation.value.length;
 
-if(remaining > 0){
-counter1.innerText = "Encore " + remaining + " caractères minimum";
-}else{
-counter1.innerText = "Minimum atteint";
-}
+counter1.innerText = remaining > 0
+? "Encore " + remaining + " caractères minimum"
+: "Minimum atteint";
 
 });
 
@@ -228,15 +226,13 @@ confiance.addEventListener("input", () => {
 
 let remaining = 150 - confiance.value.length;
 
-if(remaining > 0){
-counter2.innerText = "Encore " + remaining + " caractères minimum";
-}else{
-counter2.innerText = "Minimum atteint";
-}
+counter2.innerText = remaining > 0
+? "Encore " + remaining + " caractères minimum"
+: "Minimum atteint";
 
 });
 
-document.getElementById("debanForm").addEventListener("submit", function(e){
+document.getElementById("debanForm").addEventListener("submit", async function(e){
 
 e.preventDefault();
 
@@ -254,49 +250,41 @@ const discord = document.getElementById("discord").value;
 const raison = document.getElementById("raison").value;
 const staff = document.getElementById("staff").value;
 const date = document.getElementById("date").value;
-const preuve = document.getElementById("preuve").value;
-const banType = document.querySelector('input[name="ban"]:checked').value;
+const file = document.getElementById("preuve").files[0];
 
-fetch(webhook,{
+const formData = new FormData();
 
-method:"POST",
+formData.append("payload_json", JSON.stringify({
 
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
+content:"📩 Nouvelle demande de déban",
 
 embeds:[{
 
-title:"📩 Nouvelle demande de déban",
-
-color:3447003,
+title:"Demande de déban MVP FivePD",
 
 fields:[
 
 {name:"Discord",value:discord},
-{name:"Type de ban",value:banType},
-{name:"Date du ban",value:date || "Permanent"},
 {name:"Raison du ban",value:raison},
 {name:"Staff",value:staff},
-{name:"Capture txAdmin",value:preuve},
+{name:"Date du ban",value:date || "Définitif"},
 {name:"Motivations",value:motivation.value},
 {name:"Pourquoi lever la sanction",value:confiance.value}
 
-],
-
-footer:{
-text:"MVP FivePD • Demande de déban"
-}
+]
 
 }]
 
-})
+}));
 
+formData.append("file", file);
+
+fetch(webhook,{
+method:"POST",
+body:formData
 });
 
-alert("Votre demande a été envoyée au staff.");
+alert("Demande envoyée au staff.");
 
 });
 
