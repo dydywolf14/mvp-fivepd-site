@@ -128,17 +128,17 @@ Si vous avez déjà fait une demande il y a moins de 7 jours, soyez patient.
 
 <h2>Demande de déban</h2>
 
-<form>
+<form id="banForm">
 
-<input type="text" placeholder="Nom FiveM" required><br>
+<input type="text" id="name" placeholder="Nom FiveM" required><br>
 
-<input type="text" placeholder="Discord" required><br>
+<input type="text" id="discord" placeholder="Discord" required><br>
 
-<input type="text" placeholder="ID Steam / Rockstar"><br>
+<input type="text" id="steam" placeholder="ID Steam / Rockstar"><br>
 
-<textarea placeholder="Pourquoi devons-nous vous débannir ?" rows="4"></textarea><br>
+<textarea id="reason" placeholder="Pourquoi devons-nous vous débannir ?" rows="4"></textarea><br>
 
-<button>Envoyer la demande</button>
+<button type="submit">Envoyer la demande</button>
 
 </form>
 
@@ -149,6 +149,44 @@ Si vous avez déjà fait une demande il y a moins de 7 jours, soyez patient.
 <footer>
 MVP | FivePD • Support
 </footer>
+
+<script>
+
+const webhook = "https://discordapp.com/api/webhooks/1482384579556806706/sPNqdGcHxEss_lGwkwEy8Wu9i1VC_MuRIZmhuuYPXhZYWRtC5Y7FSKem3YceN4Q4quRp";
+
+document.getElementById("banForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const name = document.getElementById("name").value;
+const discord = document.getElementById("discord").value;
+const steam = document.getElementById("steam").value;
+const reason = document.getElementById("reason").value;
+
+fetch(webhook, {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify({
+content:
+"📩 **Nouvelle demande de déban**\n\n" +
+"👤 Nom FiveM: " + name + "\n" +
+"💬 Discord: " + discord + "\n" +
+"🎮 Steam: " + steam + "\n" +
+"📝 Raison: " + reason
+})
+
+});
+
+alert("Demande envoyée sur le Discord !");
+
+});
+
+</script>
 
 </body>
 </html>
