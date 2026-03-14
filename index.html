@@ -27,8 +27,6 @@ justify-content:space-between;
 align-items:center;
 }
 
-/* LOGO */
-
 .logo{
 display:flex;
 align-items:center;
@@ -132,6 +130,22 @@ border:none;
 border-radius:6px;
 }
 
+/* RADIO */
+
+.radio{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+margin:8px;
+}
+
+.radio input{
+width:auto;
+}
+
+/* BUTTON */
+
 button{
 padding:12px 30px;
 background:#3bc3ff;
@@ -140,11 +154,6 @@ border-radius:6px;
 color:white;
 font-size:16px;
 cursor:pointer;
-}
-
-label{
-display:block;
-margin-top:10px;
 }
 
 /* FOOTER */
@@ -224,9 +233,9 @@ Les bannissements liés à l'anti-cheat ne seront pas traités via ce formulaire
 
 <h3>Type de bannissement</h3>
 
-<label>
+<label class="radio">
 <input type="radio" name="bantype" value="Temporaire">
-Ban temporaire
+<span>Ban temporaire</span>
 </label>
 
 <div id="tempBanFields" style="display:none;">
@@ -234,9 +243,9 @@ Ban temporaire
 <input type="time" id="banHeure"><br>
 </div>
 
-<label>
+<label class="radio">
 <input type="radio" name="bantype" value="Définitif">
-Ban définitif
+<span>Ban définitif</span>
 </label>
 
 <textarea id="reason" placeholder="Pourquoi devons-nous vous débannir ? (200 caractères minimum)" rows="4"></textarea><br>
