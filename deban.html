@@ -49,14 +49,6 @@ font-size:32px;
 margin-bottom:20px;
 }
 
-.info{
-background:#0a2c52;
-padding:15px;
-border-radius:8px;
-text-align:center;
-margin-bottom:30px;
-}
-
 form{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -103,10 +95,8 @@ font-size:16px;
 cursor:pointer;
 }
 
-footer{
-text-align:center;
-margin-top:40px;
-opacity:0.6;
+.hidden{
+display:none;
 }
 
 </style>
@@ -124,9 +114,7 @@ MVP FivePD
 <nav>
 
 <a href="index.html">Accueil</a>
-<a href="reglement.html">Règlement</a>
 <a href="deban.html">Déban</a>
-<a href="support.html">Support</a>
 
 </nav>
 
@@ -138,26 +126,43 @@ MVP FivePD
 🔨 Vous êtes banni(e) ?
 </div>
 
-<div class="info">
-La sanction peut être temporaire ou définitive.  
-Veuillez remplir correctement le formulaire pour faire appel.
-</div>
-
 <form id="debanForm">
 
 <input type="text" id="discord" placeholder="Pseudo Discord" required>
 
 <input type="text" id="raison" placeholder="Raison du bannissement">
 
-<input type="date" id="date" placeholder="Date de votre ban">
+<input type="text" id="staff" placeholder="Staff qui vous a banni">
 
-<input type="text" id="staff" placeholder="Modérateur / Admin qui vous a banni">
+<div class="radio">
+
+<label>Type de bannissement :</label>
+
+<input type="radio" name="ban" value="Permanent" onclick="toggleDate()"> Permanent
+<input type="radio" name="ban" value="Temporaire" onclick="toggleDate()"> Temporaire
+
+</div>
+
+<div id="dateBan" class="full hidden">
+
+<label>Date de votre ban</label>
+<input type="date" id="date">
+
+</div>
+
+<div class="full">
+
+<label>Lien de la capture du ban txAdmin</label>
+
+<input type="text" id="preuve" placeholder="Lien de votre capture (imgur, discord, etc)" required>
+
+</div>
 
 <div class="full">
 
 <label>Vos motivations pour revenir sur le serveur</label>
 
-<textarea id="motivation" placeholder="Expliquez pourquoi vous souhaitez revenir..." required></textarea>
+<textarea id="motivation" required></textarea>
 
 <div class="counter" id="counter1">
 Minimum 150 caractères
@@ -169,27 +174,11 @@ Minimum 150 caractères
 
 <label>Pourquoi devrions-nous lever la sanction ?</label>
 
-<textarea id="confiance" placeholder="Soyez convaincant..." required></textarea>
+<textarea id="confiance" required></textarea>
 
 <div class="counter" id="counter2">
 Minimum 150 caractères
 </div>
-
-</div>
-
-<div class="radio">
-
-<label>Type de bannissement :</label>
-
-<input type="radio" name="ban" value="Permanent"> Permanent
-<input type="radio" name="ban" value="Temporaire"> Temporaire
-
-</div>
-
-<div class="radio">
-
-<input type="checkbox" required>
-J'ai relu le règlement et compris la raison de la sanction
 
 </div>
 
@@ -201,13 +190,21 @@ ENVOYER MA DEMANDE
 
 </div>
 
-<footer>
-MVP FivePD • Support
-</footer>
-
 <script>
 
 const webhook = "https://discordapp.com/api/webhooks/1482384579556806706/sPNqdGcHxEss_lGwkwEy8Wu9i1VC_MuRIZmhuuYPXhZYWRtC5Y7FSKem3YceN4Q4quRp";
+
+function toggleDate(){
+
+const type = document.querySelector('input[name="ban"]:checked').value;
+
+if(type === "Temporaire"){
+document.getElementById("dateBan").classList.remove("hidden");
+}else{
+document.getElementById("dateBan").classList.add("hidden");
+}
+
+}
 
 const motivation = document.getElementById("motivation");
 const confiance = document.getElementById("confiance");
@@ -244,19 +241,21 @@ document.getElementById("debanForm").addEventListener("submit", function(e){
 e.preventDefault();
 
 if(motivation.value.length < 150){
-alert("Les motivations doivent contenir au moins 150 caractères.");
+alert("Motivations minimum 150 caractères");
 return;
 }
 
 if(confiance.value.length < 150){
-alert("La justification doit contenir au moins 150 caractères.");
+alert("Justification minimum 150 caractères");
 return;
 }
 
 const discord = document.getElementById("discord").value;
 const raison = document.getElementById("raison").value;
-const date = document.getElementById("date").value;
 const staff = document.getElementById("staff").value;
+const date = document.getElementById("date").value;
+const preuve = document.getElementById("preuve").value;
+const banType = document.querySelector('input[name="ban"]:checked').value;
 
 fetch(webhook,{
 
@@ -277,9 +276,11 @@ color:3447003,
 fields:[
 
 {name:"Discord",value:discord},
+{name:"Type de ban",value:banType},
+{name:"Date du ban",value:date || "Permanent"},
 {name:"Raison du ban",value:raison},
-{name:"Date du ban",value:date},
 {name:"Staff",value:staff},
+{name:"Capture txAdmin",value:preuve},
 {name:"Motivations",value:motivation.value},
 {name:"Pourquoi lever la sanction",value:confiance.value}
 
