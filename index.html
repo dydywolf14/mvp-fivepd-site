@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
-<title>MVP | FivePD</title>
+<title>MVP FivePD</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
@@ -28,19 +29,17 @@ align-items:center;
 
 .logo{
 font-family:'Orbitron', sans-serif;
-font-size:32px;
+font-size:34px;
 font-weight:bold;
-display:flex;
-align-items:center;
 }
 
-.logo-mvp{
+.logo span:first-child{
 color:#3bc3ff;
-margin-right:8px;
 }
 
-.logo-fivepd{
+.logo span:last-child{
 color:white;
+margin-left:8px;
 }
 
 nav a{
@@ -50,7 +49,7 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* TOPBAR */
+/* TOP BAR */
 
 .topbar{
 background:#062a52;
@@ -151,15 +150,14 @@ opacity:0.8;
 <header>
 
 <div class="logo">
-<span class="logo-mvp">MVP</span>
-<span class="logo-fivepd">FivePD</span>
+<span>MVP</span><span>FivePD</span>
 </div>
 
 <nav>
 <a href="#">🏠 Accueil</a>
-<a href="#">Rejoindre</a>
-<a href="#">Règlement</a>
-<a href="#">Support</a>
+<a href="#">🎮 Rejoindre</a>
+<a href="#">📜 Règlement</a>
+<a href="#">💬 Support</a>
 </nav>
 
 </header>
@@ -206,7 +204,8 @@ Les bannissements liés à l'anti-cheat ne seront pas traités via ce formulaire
 <h3>Type de bannissement</h3>
 
 <label>
-<input type="radio" name="bantype" value="Temporaire"> Ban temporaire
+<input type="radio" name="bantype" value="Temporaire">
+Ban temporaire
 </label>
 
 <div id="tempBanFields" style="display:none;">
@@ -215,7 +214,8 @@ Les bannissements liés à l'anti-cheat ne seront pas traités via ce formulaire
 </div>
 
 <label>
-<input type="radio" name="bantype" value="Définitif"> Ban définitif
+<input type="radio" name="bantype" value="Définitif">
+Ban définitif
 </label>
 
 <textarea id="reason" placeholder="Pourquoi devons-nous vous débannir ? (200 caractères minimum)" rows="4"></textarea><br>
@@ -234,18 +234,26 @@ Développeur Dydy Wolf
 
 const webhook = "TON_WEBHOOK_ICI";
 
+/* afficher date si temporaire */
+
 const radios = document.querySelectorAll('input[name="bantype"]');
 const tempFields = document.getElementById("tempBanFields");
 
 radios.forEach(radio => {
+
 radio.addEventListener("change", function(){
+
 if(this.value === "Temporaire"){
 tempFields.style.display = "block";
 }else{
 tempFields.style.display = "none";
 }
+
 });
+
 });
+
+/* formulaire */
 
 document.getElementById("banForm").addEventListener("submit", function(e){
 
@@ -257,6 +265,7 @@ const steam = document.getElementById("steam").value;
 const staffban = document.getElementById("staffban").value;
 const banreason = document.getElementById("banreason").value;
 const reason = document.getElementById("reason").value;
+
 const bantype = document.querySelector('input[name="bantype"]:checked');
 
 const banDate = document.getElementById("banDate").value;
@@ -272,30 +281,26 @@ alert("Votre explication doit contenir au moins 200 caractères.");
 return;
 }
 
-fetch(webhook, {
-
-method: "POST",
-
-headers: {
-"Content-Type": "application/json"
+fetch(webhook,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
 },
-
-body: JSON.stringify({
+body:JSON.stringify({
 content:
-"📩 Nouvelle demande de déban\n\n" +
-"Nom FiveM: " + name + "\n" +
-"Discord: " + discord + "\n" +
-"Steam: " + steam + "\n" +
-"Staff qui a ban: " + staffban + "\n" +
-"Raison du ban: " + banreason + "\n" +
-"Type de ban: " + bantype.value + "\n" +
-"Fin du ban: " + banDate + " " + banHeure + "\n" +
-"Pourquoi être débanni: " + reason
+"📩 Nouvelle demande de déban\n\n"+
+"Nom FiveM: "+name+"\n"+
+"Discord: "+discord+"\n"+
+"Steam: "+steam+"\n"+
+"Staff qui a ban: "+staffban+"\n"+
+"Raison du ban: "+banreason+"\n"+
+"Type de ban: "+bantype.value+"\n"+
+"Fin du ban: "+banDate+" "+banHeure+"\n"+
+"Pourquoi être débanni: "+reason
 })
-
 });
 
-alert("Demande envoyée !");
+alert("✅ Demande envoyée au staff !");
 
 });
 
