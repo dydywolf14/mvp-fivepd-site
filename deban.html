@@ -149,7 +149,7 @@ Veuillez remplir correctement le formulaire pour faire appel.
 
 <input type="text" id="raison" placeholder="Raison du bannissement">
 
-<input type="date" id="date">
+<input type="date" id="date" placeholder="Date de votre ban">
 
 <input type="text" id="staff" placeholder="Modérateur / Admin qui vous a banni">
 
@@ -159,8 +159,8 @@ Veuillez remplir correctement le formulaire pour faire appel.
 
 <textarea id="motivation" placeholder="Expliquez pourquoi vous souhaitez revenir..." required></textarea>
 
-<div class="counter" id="counter">
-Minimum 100 caractères
+<div class="counter" id="counter1">
+Minimum 150 caractères
 </div>
 
 </div>
@@ -171,6 +171,10 @@ Minimum 100 caractères
 
 <textarea id="confiance" placeholder="Soyez convaincant..." required></textarea>
 
+<div class="counter" id="counter2">
+Minimum 150 caractères
+</div>
+
 </div>
 
 <div class="radio">
@@ -178,7 +182,6 @@ Minimum 100 caractères
 <label>Type de bannissement :</label>
 
 <input type="radio" name="ban" value="Permanent"> Permanent
-
 <input type="radio" name="ban" value="Temporaire"> Temporaire
 
 </div>
@@ -199,30 +202,39 @@ ENVOYER MA DEMANDE
 </div>
 
 <footer>
-
 MVP FivePD • Support
-
 </footer>
 
 <script>
 
 const webhook = "https://discordapp.com/api/webhooks/1482384579556806706/sPNqdGcHxEss_lGwkwEy8Wu9i1VC_MuRIZmhuuYPXhZYWRtC5Y7FSKem3YceN4Q4quRp";
 
-const textarea = document.getElementById("motivation");
-const counter = document.getElementById("counter");
+const motivation = document.getElementById("motivation");
+const confiance = document.getElementById("confiance");
 
-textarea.addEventListener("input", () => {
+const counter1 = document.getElementById("counter1");
+const counter2 = document.getElementById("counter2");
 
-let remaining = 100 - textarea.value.length;
+motivation.addEventListener("input", () => {
+
+let remaining = 150 - motivation.value.length;
 
 if(remaining > 0){
-
-counter.innerText = "Encore " + remaining + " caractères minimum";
-
+counter1.innerText = "Encore " + remaining + " caractères minimum";
 }else{
+counter1.innerText = "Minimum atteint";
+}
 
-counter.innerText = "Minimum atteint";
+});
 
+confiance.addEventListener("input", () => {
+
+let remaining = 150 - confiance.value.length;
+
+if(remaining > 0){
+counter2.innerText = "Encore " + remaining + " caractères minimum";
+}else{
+counter2.innerText = "Minimum atteint";
 }
 
 });
@@ -231,19 +243,20 @@ document.getElementById("debanForm").addEventListener("submit", function(e){
 
 e.preventDefault();
 
-if(textarea.value.length < 100){
-
-alert("Vous devez écrire au moins 100 caractères pour vos motivations.");
+if(motivation.value.length < 150){
+alert("Les motivations doivent contenir au moins 150 caractères.");
 return;
+}
 
+if(confiance.value.length < 150){
+alert("La justification doit contenir au moins 150 caractères.");
+return;
 }
 
 const discord = document.getElementById("discord").value;
 const raison = document.getElementById("raison").value;
 const date = document.getElementById("date").value;
 const staff = document.getElementById("staff").value;
-const motivation = document.getElementById("motivation").value;
-const confiance = document.getElementById("confiance").value;
 
 fetch(webhook,{
 
@@ -267,8 +280,8 @@ fields:[
 {name:"Raison du ban",value:raison},
 {name:"Date du ban",value:date},
 {name:"Staff",value:staff},
-{name:"Motivations",value:motivation},
-{name:"Pourquoi lever la sanction",value:confiance}
+{name:"Motivations",value:motivation.value},
+{name:"Pourquoi lever la sanction",value:confiance.value}
 
 ],
 
