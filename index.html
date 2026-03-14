@@ -9,20 +9,20 @@
 body{
 margin:0;
 font-family:Arial;
-background:#031a33;
+background:#021b33;
 color:white;
 }
 
 header{
 background:#041f44;
-padding:15px;
+padding:15px 30px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 .logo{
-font-size:24px;
+font-size:26px;
 font-weight:bold;
 color:#3bc3ff;
 }
@@ -34,29 +34,36 @@ text-decoration:none;
 font-weight:bold;
 }
 
-.container{
-text-align:center;
-padding:100px;
+.breadcrumb{
+background:#062a52;
+padding:15px 30px;
+border-radius:30px;
+margin:30px auto;
+width:80%;
 }
 
-.card{
-background:#062a52;
+.container{
+text-align:center;
 padding:40px;
-border-radius:10px;
-max-width:700px;
-margin:auto;
+}
+
+.title{
+font-size:34px;
+margin-bottom:10px;
 }
 
 .notice{
-background:#0b3d74;
+background:linear-gradient(90deg,#1c74ff,#8a2be2);
 padding:15px;
-border-radius:8px;
-margin:20px 0;
+border-radius:10px;
+margin:30px auto;
+width:70%;
 }
 
 .warning{
+margin-top:40px;
 color:#ff6b6b;
-margin-top:20px;
+font-size:18px;
 }
 
 form{
@@ -64,18 +71,18 @@ margin-top:30px;
 }
 
 input, textarea{
+width:300px;
 padding:10px;
 margin:6px;
 border-radius:5px;
 border:none;
-width:260px;
 }
 
 button{
-padding:10px 20px;
+padding:12px 25px;
 background:#3bc3ff;
 border:none;
-border-radius:5px;
+border-radius:6px;
 color:white;
 font-size:16px;
 cursor:pointer;
@@ -83,9 +90,8 @@ cursor:pointer;
 
 footer{
 text-align:center;
-padding:20px;
-opacity:0.7;
-margin-top:40px;
+margin-top:80px;
+opacity:0.8;
 }
 
 </style>
@@ -107,26 +113,26 @@ margin-top:40px;
 
 </header>
 
+<div class="breadcrumb">
+🏠 Accueil / Assistance
+</div>
+
 <div class="container">
 
-<div class="card">
-
-<h1>🔨 Vous êtes banni ?</h1>
+<div class="title">🔨 Vous êtes banni(e) ?</div>
 
 <p>
-Une sanction peut être temporaire ou définitive.
-Vous pouvez faire appel pour espérer revenir sur le serveur.
+La sanction amène parfois un bannissement temporaire ou définitif du serveur.
+Vous pouvez faire appel de la décision pour espérer revenir jouer.
+</p>
+
+<p>
+Veuillez remplir toutes les informations ci-dessous pour faire appel de la sanction.
 </p>
 
 <div class="notice">
 Avant toute chose, nous vous conseillons de relire le règlement.
 </div>
-
-<p class="warning">
-Si vous avez déjà fait une demande il y a moins de 7 jours, soyez patient.
-</p>
-
-<h2>Demande de déban</h2>
 
 <form id="banForm">
 
@@ -142,17 +148,19 @@ Si vous avez déjà fait une demande il y a moins de 7 jours, soyez patient.
 
 </form>
 
+<div class="warning">
+📢 Tu as déjà fait une demande il y a moins de 7 jours, sois patient !
 </div>
 
 </div>
 
 <footer>
-MVP | FivePD • Support
+Développé avec ❤️ – MVP | FivePD
 </footer>
 
 <script>
 
-const webhook = "https://discordapp.com/api/webhooks/1482384579556806706/sPNqdGcHxEss_lGwkwEy8Wu9i1VC_MuRIZmhuuYPXhZYWRtC5Y7FSKem3YceN4Q4quRp";
+const webhook = "TON_WEBHOOK_DISCORD";
 
 document.getElementById("banForm").addEventListener("submit", function(e){
 
@@ -173,17 +181,16 @@ headers: {
 
 body: JSON.stringify({
 content:
-"📩 **Nouvelle demande de déban**\n\n" +
-"👤 Nom FiveM: " + name + "\n" +
-"💬 Discord: " + discord + "\n" +
-"🎮 Steam: " + steam + "\n" +
-"📝 Raison: " + reason
+"📩 Nouvelle demande de déban\n\n" +
+"Nom FiveM: " + name + "\n" +
+"Discord: " + discord + "\n" +
+"Steam: " + steam + "\n" +
+"Raison: " + reason
 })
 
 });
 
-alert("Demande envoyée sur le Discord !");
-
+alert("Demande envoyée !");
 });
 
 </script>
