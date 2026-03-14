@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>MVP FivePD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -33,26 +33,24 @@ align-items:center;
 }
 
 .logo img{
-height:65px;
+height:60px;
 margin-right:15px;
 }
 
 .logo-text{
-font-family:'Orbitron', sans-serif;
-font-size:30px;
+font-family:'Orbitron',sans-serif;
+font-size:28px;
 font-weight:bold;
 }
 
 .mvp{
 color:#3bc3ff;
-margin-right:6px;
 }
 
 .fivepd{
 color:white;
+margin-left:6px;
 }
-
-/* MENU */
 
 nav a{
 color:white;
@@ -61,7 +59,7 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* BARRE */
+/* TOP BAR */
 
 .topbar{
 background:#062a52;
@@ -73,19 +71,19 @@ display:flex;
 justify-content:space-between;
 }
 
-/* CONTAINER */
+/* TITRE */
 
 .container{
 text-align:center;
-padding:40px;
+padding:20px;
 }
 
 .title{
-font-size:36px;
+font-size:34px;
 margin-bottom:10px;
 }
 
-/* BOX */
+/* BOX INFO */
 
 .gradient-box{
 margin:30px auto;
@@ -93,70 +91,76 @@ width:70%;
 padding:20px;
 border-radius:10px;
 background:#031a33;
-border:2px solid transparent;
-background-clip:padding-box;
-position:relative;
+border:1px solid #3bc3ff;
 }
 
-.gradient-box:before{
-content:"";
-position:absolute;
-top:-2px;
-left:-2px;
-right:-2px;
-bottom:-2px;
-border-radius:10px;
-background:linear-gradient(90deg,#00bfff,#8a2be2);
-z-index:-1;
+/* FORMULAIRE */
+
+.ban-form{
+max-width:900px;
+margin:auto;
+margin-top:40px;
 }
 
-.warning{
-margin-top:20px;
-color:#ff6b6b;
-font-size:18px;
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 }
 
-/* FORM */
-
-form{
-margin-top:30px;
-}
-
-input, textarea{
-width:320px;
-padding:12px;
-margin:8px;
-border:none;
-border-radius:6px;
-}
-
-/* RADIO */
-
-.radio{
+.field{
 display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-margin:8px;
+flex-direction:column;
 }
 
-.radio input{
-width:auto;
+.field label{
+margin-bottom:6px;
+font-size:14px;
+opacity:0.8;
 }
 
-/* BUTTON */
-
-button{
-padding:12px 30px;
-background:#3bc3ff;
-border:none;
+.field input{
+background:#021b33;
+border:1px solid #2b4b6f;
+padding:12px;
 border-radius:6px;
 color:white;
-font-size:16px;
-cursor:pointer;
 }
 
-/* FOOTER */
+.field textarea{
+background:#021b33;
+border:1px solid #2b4b6f;
+padding:12px;
+border-radius:6px;
+color:white;
+resize:none;
+}
+
+.full{
+grid-column:1/3;
+}
+
+.radio-options{
+display:flex;
+gap:25px;
+margin-top:10px;
+}
+
+.submit{
+text-align:center;
+margin-top:40px;
+}
+
+.submit button{
+background:#2ecc71;
+border:none;
+padding:14px 40px;
+border-radius:6px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
 
 footer{
 text-align:center;
@@ -202,110 +206,114 @@ opacity:0.8;
 <div class="title">🔨 Vous êtes banni(e) ?</div>
 
 <p>
-La sanction amène parfois un bannissement temporaire ou définitif du serveur.
-Vous pouvez faire appel de la décision pour espérer revenir jouer sur le serveur.
-</p>
-
-<p>
-Veuillez remplir toutes les informations ci-dessous pour faire appel de la sanction.
+La sanction peut être temporaire ou définitive.
+Vous pouvez faire appel pour revenir jouer sur le serveur.
 </p>
 
 <div class="gradient-box">
 Avant toute chose, nous vous conseillons de relire le règlement.
 </div>
 
-<div class="warning">
-⚠️ Ce formulaire est uniquement destiné aux bannissements effectués par un membre du staff.<br>
-Les bannissements liés à l'anti-cheat ne seront pas traités via ce formulaire.
+<form id="banForm" class="ban-form">
+
+<div class="grid">
+
+<div class="field">
+<label>Pseudo Discord</label>
+<input type="text" id="discord" required>
 </div>
 
-<form id="banForm">
+<div class="field">
+<label>Raison du bannissement</label>
+<input type="text" id="banreason">
+</div>
 
-<input type="text" id="name" placeholder="Nom FiveM" required><br>
+<div class="field">
+<label>Steam HEX</label>
+<input type="text" id="steam">
+</div>
 
-<input type="text" id="discord" placeholder="Discord" required><br>
+<div class="field">
+<label>Date du bannissement</label>
+<input type="date" id="bandate">
+</div>
 
-<input type="text" id="steam" placeholder="ID Steam / Rockstar"><br>
+<div class="field">
+<label>Nom du personnage RP</label>
+<input type="text" id="rpname">
+</div>
 
-<input type="text" id="staffban" placeholder="Quel staff vous a banni ?"><br>
+<div class="field">
+<label>Staff qui a banni</label>
+<input type="text" id="staffban">
+</div>
 
-<input type="text" id="banreason" placeholder="Raison du ban"><br>
+</div>
 
-<h3>Type de bannissement</h3>
+<div class="field full">
+<label>Quel est votre intérêt pour le serveur ?</label>
+<textarea id="motivation" rows="6"></textarea>
+</div>
 
-<label class="radio">
+<div class="field full">
+<label>Pourquoi devrions-nous lever la sanction ?</label>
+<textarea id="reason" rows="6"></textarea>
+</div>
+
+<div class="radio-group full">
+
+<label>Type de bannissement</label>
+
+<div class="radio-options">
+
+<label>
+<input type="radio" name="bantype" value="Permanent">
+Permanent
+</label>
+
+<label>
 <input type="radio" name="bantype" value="Temporaire">
-<span>Ban temporaire</span>
+Temporaire
 </label>
 
-<div id="tempBanFields" style="display:none;">
-<input type="date" id="banDate"><br>
-<input type="time" id="banHeure"><br>
 </div>
 
-<label class="radio">
-<input type="radio" name="bantype" value="Définitif">
-<span>Ban définitif</span>
-</label>
+</div>
 
-<textarea id="reason" placeholder="Pourquoi devons-nous vous débannir ? (200 caractères minimum)" rows="4"></textarea><br>
+<div class="submit">
 
-<button type="submit">Envoyer la demande</button>
+<button type="submit">
+ENVOYER MA DEMANDE
+</button>
+
+</div>
 
 </form>
 
 </div>
 
 <footer>
-Développeur Dydy Wolf
+Développé par Dydy Wolf
 </footer>
 
 <script>
 
 const webhook = "https://discordapp.com/api/webhooks/1482384579556806706/sPNqdGcHxEss_lGwkwEy8Wu9i1VC_MuRIZmhuuYPXhZYWRtC5Y7FSKem3YceN4Q4quRp";
 
-const radios = document.querySelectorAll('input[name="bantype"]');
-const tempFields = document.getElementById("tempBanFields");
-
-radios.forEach(radio => {
-
-radio.addEventListener("change", function(){
-
-if(this.value === "Temporaire"){
-tempFields.style.display = "block";
-}else{
-tempFields.style.display = "none";
-}
-
-});
-
-});
-
-document.getElementById("banForm").addEventListener("submit", function(e){
+document.getElementById("banForm").addEventListener("submit",function(e){
 
 e.preventDefault();
 
-const name = document.getElementById("name").value;
 const discord = document.getElementById("discord").value;
 const steam = document.getElementById("steam").value;
-const staffban = document.getElementById("staffban").value;
 const banreason = document.getElementById("banreason").value;
+const bandate = document.getElementById("bandate").value;
+const rpname = document.getElementById("rpname").value;
+const staffban = document.getElementById("staffban").value;
+const motivation = document.getElementById("motivation").value;
 const reason = document.getElementById("reason").value;
 
 const bantype = document.querySelector('input[name="bantype"]:checked');
-
-const banDate = document.getElementById("banDate").value;
-const banHeure = document.getElementById("banHeure").value;
-
-if(!bantype){
-alert("Veuillez sélectionner le type de bannissement.");
-return;
-}
-
-if(reason.length < 200){
-alert("Votre explication doit contenir au moins 200 caractères.");
-return;
-}
 
 fetch(webhook,{
 method:"POST",
@@ -315,18 +323,19 @@ headers:{
 body:JSON.stringify({
 content:
 "📩 Nouvelle demande de déban\n\n"+
-"Nom FiveM: "+name+"\n"+
 "Discord: "+discord+"\n"+
 "Steam: "+steam+"\n"+
-"Staff qui a ban: "+staffban+"\n"+
 "Raison du ban: "+banreason+"\n"+
-"Type de ban: "+bantype.value+"\n"+
-"Fin du ban: "+banDate+" "+banHeure+"\n"+
-"Pourquoi être débanni: "+reason
+"Date du ban: "+bandate+"\n"+
+"Nom RP: "+rpname+"\n"+
+"Staff: "+staffban+"\n"+
+"Motivation: "+motivation+"\n"+
+"Pourquoi être débanni: "+reason+"\n"+
+"Type de ban: "+(bantype ? bantype.value : "Non précisé")
 })
 });
 
-alert("✅ Demande envoyée au staff !");
+alert("Demande envoyée au staff !");
 
 });
 
