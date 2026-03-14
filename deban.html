@@ -49,6 +49,14 @@ font-size:32px;
 margin-bottom:20px;
 }
 
+.warning{
+background:#0a2c52;
+padding:15px;
+border-radius:8px;
+margin-bottom:25px;
+text-align:center;
+}
+
 form{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -82,6 +90,11 @@ margin-top:5px;
 .radio{
 grid-column:1/3;
 margin-top:10px;
+}
+
+.checkbox{
+grid-column:1/3;
+margin-top:20px;
 }
 
 button{
@@ -126,19 +139,24 @@ MVP FivePD
 🔨 Demande de déban
 </div>
 
+<div class="warning">
+Ce formulaire est réservé aux bans attribués par un membre du staff.<br>
+Si votre bannissement concerne un anti-cheat, la demande sera automatiquement refusée par le staff.
+</div>
+
 <form id="debanForm">
 
 <input type="text" id="discord" placeholder="Pseudo Discord" required>
 
-<input type="text" id="raison" placeholder="Raison du bannissement">
+<input type="text" id="raison" placeholder="Raison du bannissement" required>
 
-<input type="text" id="staff" placeholder="Staff qui vous a banni">
+<input type="text" id="staff" placeholder="Staff qui vous a banni" required>
 
 <div class="radio">
 
 <label>Type de bannissement :</label>
 
-<input type="radio" name="ban" value="Permanent" onclick="toggleDate()"> Permanent
+<input type="radio" name="ban" value="Permanent" onclick="toggleDate()" required> Permanent
 <input type="radio" name="ban" value="Définitif" onclick="toggleDate()"> Définitif
 
 </div>
@@ -179,6 +197,16 @@ Minimum 150 caractères
 <div class="counter" id="counter2">
 Minimum 150 caractères
 </div>
+
+</div>
+
+<div class="checkbox">
+
+<input type="checkbox" id="confirm" required>
+
+<label for="confirm">
+J'ai relu le règlement dans son intégralité et j'ai compris la raison de la sanction.
+</label>
 
 </div>
 
@@ -237,12 +265,17 @@ document.getElementById("debanForm").addEventListener("submit", async function(e
 e.preventDefault();
 
 if(motivation.value.length < 150){
-alert("Motivations minimum 150 caractères");
+alert("Les motivations doivent contenir au moins 150 caractères.");
 return;
 }
 
 if(confiance.value.length < 150){
-alert("Justification minimum 150 caractères");
+alert("La justification doit contenir au moins 150 caractères.");
+return;
+}
+
+if(!document.getElementById("confirm").checked){
+alert("Vous devez confirmer avoir lu le règlement.");
 return;
 }
 
