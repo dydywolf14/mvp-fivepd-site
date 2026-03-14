@@ -160,15 +160,17 @@ Avant toute chose, nous vous conseillons de relire le règlement.
 
 <input type="text" id="steam" placeholder="ID Steam / Rockstar"><br>
 
-<textarea id="reason" placeholder="Pourquoi devons-nous vous débannir ?" rows="4"></textarea><br>
+<input type="text" id="staffban" placeholder="Quel staff vous a banni ?"><br>
+
+<input type="text" id="banreason" placeholder="Raison du ban"><br>
+
+<textarea id="reason" placeholder="Pourquoi devons-nous vous débannir ? (200 caractères minimum)" rows="4"></textarea><br>
 
 <button type="submit">Envoyer la demande</button>
 
 </form>
 
-<div class="warning">
-
-</div>
+<div class="warning"></div>
 
 </div>
 
@@ -187,7 +189,14 @@ e.preventDefault();
 const name = document.getElementById("name").value;
 const discord = document.getElementById("discord").value;
 const steam = document.getElementById("steam").value;
+const staffban = document.getElementById("staffban").value;
+const banreason = document.getElementById("banreason").value;
 const reason = document.getElementById("reason").value;
+
+if(reason.length < 200){
+alert("Votre explication doit contenir au moins 200 caractères.");
+return;
+}
 
 fetch(webhook, {
 
@@ -203,12 +212,15 @@ content:
 "Nom FiveM: " + name + "\n" +
 "Discord: " + discord + "\n" +
 "Steam: " + steam + "\n" +
-"Raison: " + reason
+"Staff qui a ban: " + staffban + "\n" +
+"Raison du ban: " + banreason + "\n" +
+"Pourquoi être débanni: " + reason
 })
 
 });
 
 alert("Demande envoyée !");
+
 });
 
 </script>
