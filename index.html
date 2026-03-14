@@ -14,32 +14,34 @@ color:white;
 }
 
 header{
-background:#041f44;
-padding:15px 30px;
+background:#051d44;
+padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 .logo{
-font-size:26px;
+font-size:28px;
 font-weight:bold;
 color:#3bc3ff;
 }
 
 nav a{
 color:white;
-margin-left:20px;
+margin-left:25px;
 text-decoration:none;
 font-weight:bold;
 }
 
-.breadcrumb{
+.topbar{
 background:#062a52;
-padding:15px 30px;
-border-radius:30px;
+padding:15px;
+border-radius:40px;
 margin:30px auto;
-width:80%;
+width:85%;
+display:flex;
+justify-content:space-between;
 }
 
 .container{
@@ -48,22 +50,37 @@ padding:40px;
 }
 
 .title{
-font-size:34px;
+font-size:36px;
 margin-bottom:10px;
 }
 
-.notice{
-background:linear-gradient(90deg,#1c74ff,#8a2be2);
-padding:15px;
-border-radius:10px;
+.gradient-box{
 margin:30px auto;
 width:70%;
+padding:20px;
+border-radius:10px;
+background:#031a33;
+border:2px solid transparent;
+background-clip:padding-box;
+position:relative;
+}
+
+.gradient-box:before{
+content:"";
+position:absolute;
+top:-2px;
+left:-2px;
+right:-2px;
+bottom:-2px;
+border-radius:10px;
+background:linear-gradient(90deg,#00bfff,#8a2be2);
+z-index:-1;
 }
 
 .warning{
 margin-top:40px;
 color:#ff6b6b;
-font-size:18px;
+font-size:20px;
 }
 
 form{
@@ -71,15 +88,15 @@ margin-top:30px;
 }
 
 input, textarea{
-width:300px;
-padding:10px;
-margin:6px;
-border-radius:5px;
+width:320px;
+padding:12px;
+margin:8px;
 border:none;
+border-radius:6px;
 }
 
 button{
-padding:12px 25px;
+padding:12px 30px;
 background:#3bc3ff;
 border:none;
 border-radius:6px;
@@ -105,7 +122,7 @@ opacity:0.8;
 <div class="logo">MVP | FivePD</div>
 
 <nav>
-<a href="#">Accueil</a>
+<a href="#">🏠 Accueil</a>
 <a href="#">Rejoindre</a>
 <a href="#">Règlement</a>
 <a href="#">Support</a>
@@ -113,8 +130,9 @@ opacity:0.8;
 
 </header>
 
-<div class="breadcrumb">
-🏠 Accueil / Assistance
+<div class="topbar">
+<div>🏠 Accueil / Assistance</div>
+<div>Connecté via Discord</div>
 </div>
 
 <div class="container">
@@ -123,14 +141,14 @@ opacity:0.8;
 
 <p>
 La sanction amène parfois un bannissement temporaire ou définitif du serveur.
-Vous pouvez faire appel de la décision pour espérer revenir jouer.
+Vous pouvez faire appel de la décision pour espérer revenir jouer sur le serveur.
 </p>
 
 <p>
 Veuillez remplir toutes les informations ci-dessous pour faire appel de la sanction.
 </p>
 
-<div class="notice">
+<div class="gradient-box">
 Avant toute chose, nous vous conseillons de relire le règlement.
 </div>
 
@@ -160,7 +178,7 @@ Développé avec ❤️ – MVP | FivePD
 
 <script>
 
-const webhook = "TON_WEBHOOK_DISCORD";
+const webhook = "https://discordapp.com/api/webhooks/1482384579556806706/....";
 
 document.getElementById("banForm").addEventListener("submit", function(e){
 
