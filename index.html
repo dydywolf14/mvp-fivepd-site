@@ -2,7 +2,6 @@
 <html lang="fr">
 
 <head>
-
 <meta charset="UTF-8">
 <title>MVP | FivePD</title>
 
@@ -11,35 +10,30 @@
 body{
 margin:0;
 font-family:Arial;
-background:#021b33;
+background:#031a33;
 color:white;
 }
 
 /* HEADER */
 
 header{
-background:#051d44;
-padding:15px 40px;
+background:#041f44;
 display:flex;
-justify-content:space-between;
 align-items:center;
-border-bottom:2px solid red;
+justify-content:space-between;
+padding:15px 40px;
 }
 
 .logo{
 display:flex;
 align-items:center;
 gap:10px;
+font-size:24px;
+font-weight:bold;
 }
 
 .logo img{
-height:55px;
-}
-
-.logo-text{
-font-size:24px;
-font-weight:bold;
-color:#3bc3ff;
+height:45px;
 }
 
 nav a{
@@ -52,135 +46,102 @@ font-weight:bold;
 /* HERO */
 
 .hero{
-height:700px;
-background:
-linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-url("marseille.png") center/cover no-repeat;
+background:url("marseille.jpg") center/cover no-repeat;
+height:600px;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
+}
+
+.hero-content{
+background:rgba(0,0,0,0.5);
+padding:40px;
+border-radius:10px;
+max-width:900px;
 }
 
 .hero h1{
-font-size:55px;
-margin-bottom:20px;
+font-size:50px;
 }
 
-.description{
-max-width:900px;
-font-size:18px;
-line-height:1.7;
-}
-
-/* JOUEURS */
-
-.players-box{
-background:#1f4ed8;
-padding:12px 30px;
-border-radius:8px;
-font-size:22px;
-font-weight:bold;
+.players{
+background:#081e45;
 display:inline-flex;
 align-items:center;
 gap:10px;
-margin-top:25px;
+padding:10px 20px;
+border-radius:8px;
+margin-top:20px;
+font-size:20px;
 }
 
-/* BUTTON */
+/* SOCIAL */
 
-.buttons{
-margin-top:30px;
-}
-
-.btn{
-padding:15px 35px;
-border-radius:6px;
-text-decoration:none;
-font-weight:bold;
-margin:10px;
-display:inline-block;
-background:#28a745;
-color:white;
-}
-
-/* TIKTOK */
-
-.tiktok{
+.social{
+text-align:center;
 margin-top:40px;
 }
 
-.tiktok img{
-width:70px;
+.social img{
+width:55px;
 cursor:pointer;
-transition:0.3s;
 }
 
-.tiktok img:hover{
-transform:scale(1.2);
-}
+/* CARDS */
 
-/* FEATURES */
-
-.features{
-background:#061a3a;
-padding:80px 20px;
-text-align:center;
+.section{
+padding:80px 10%;
 }
 
 .cards{
 display:flex;
-justify-content:center;
 gap:40px;
+justify-content:center;
 flex-wrap:wrap;
-margin-top:40px;
 }
 
 .card{
 width:350px;
-}
-
-.card h3{
-margin-bottom:15px;
-font-size:26px;
+text-align:center;
 }
 
 .card img{
 width:100%;
+height:220px;
+object-fit:cover;
 border-radius:12px;
+}
+
+.card h3{
+margin-bottom:15px;
+font-size:22px;
 }
 
 /* DISCORD */
 
+.discord{
+margin-top:60px;
+display:flex;
+justify-content:center;
+}
+
 .discord-box{
-margin-top:70px;
-}
-
-.discord-box a{
-background:linear-gradient(90deg,#6a00ff,#ff2a6d);
-padding:20px 40px;
-border-radius:10px;
-text-decoration:none;
-font-size:22px;
+background:linear-gradient(90deg,#6b2cff,#ff2ca0);
+padding:35px;
+border-radius:12px;
+font-size:26px;
 font-weight:bold;
-color:white;
-display:inline-block;
-transition:0.3s;
-}
-
-.discord-box a:hover{
-transform:scale(1.05);
+cursor:pointer;
 }
 
 /* FOOTER */
 
 footer{
 text-align:center;
+margin-top:80px;
 padding:30px;
-background:#051d44;
-margin-top:40px;
+opacity:0.7;
 }
 
 </style>
@@ -192,67 +153,56 @@ margin-top:40px;
 <header>
 
 <div class="logo">
-
 <img src="logo.png">
-
-<div class="logo-text">
 MVP | FivePD
 </div>
 
-</div>
-
 <nav>
-
 <a href="index.html">Accueil</a>
 <a href="deban.html">Déban</a>
-
+<a href="#">Règlement</a>
+<a href="#">Support</a>
 </nav>
 
 </header>
 
-<section class="hero">
+<!-- HERO -->
 
-<h1>Bienvenue sur MVP | FivePD</h1>
+<div class="hero">
 
-<p class="description">
+<div class="hero-content">
 
+<h1>Bienvenue à Marseille</h1>
+
+<p>
 MVP | FivePD est un serveur GTA 5 RP / FiveM Free-Accès Français basé sur la ville de Marseille avec 64 slots.
-
-<br><br>
-
-MVP | FivePD est un serveur réaliste, avec un RP sérieux. Nous proposons aux joueurs de faire évoluer un personnage sur un serveur stable et organisé.
-
+MVP | FivePD est un serveur réaliste avec un RP sérieux.
+Nous proposons aux joueurs de faire évoluer un personnage sur un serveur stable et organisé.
 </p>
 
-<div class="players-box">
+<div class="players">
 
-👥 <span id="players">0</span> / 64
-
-</div>
-
-<div class="buttons">
-
-<a class="btn" href="deban.html">
-Demande de déban
-</a>
+👥 <span id="players">Chargement...</span> / 64 joueurs
 
 </div>
 
-<div class="tiktok">
+</div>
+
+</div>
+
+<!-- TIKTOK -->
+
+<div class="social">
 
 <a href="https://www.tiktok.com/@mvp_fivepd" target="_blank">
-
-<img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
-
+<img src="tiktok.png">
 </a>
 
 </div>
 
-</section>
+<!-- SECTIONS -->
 
-<section class="features">
-
-<h2>Découvre notre serveur</h2>
+<div class="section">
 
 <div class="cards">
 
@@ -260,7 +210,7 @@ Demande de déban
 
 <h3>Ton histoire</h3>
 
-<img src="histoire.png">
+<img src="illegal.png">
 
 </div>
 
@@ -268,7 +218,7 @@ Demande de déban
 
 <h3>Ton expérience</h3>
 
-<img src="experience.png">
+<img src="medecine.png">
 
 </div>
 
@@ -276,47 +226,48 @@ Demande de déban
 
 <h3>Ton serveur de jeu</h3>
 
-<img src="serveur.png">
+<img src="police.png">
 
 </div>
 
 </div>
 
-<div class="discord-box">
+</div>
 
-<a href="https://discord.gg/TONDISCORD" target="_blank">
+<!-- DISCORD -->
+
+<div class="discord">
+
+<div class="discord-box" onclick="window.open('https://discord.gg/', '_blank')">
 
 Rejoins-nous sur Discord →
 
-</a>
+</div>
 
 </div>
 
-</section>
-
 <footer>
 
-MVP | FivePD • Serveur Roleplay Français
+Développé avec ❤️ — MVP | FivePD
 
 </footer>
 
 <script>
 
-const serverIP = "51.77.27.175:30195";
+/* compteur joueurs FiveM */
 
-fetch(`https://servers-frontend.fivem.net/api/servers/single/${serverIP}`)
+fetch("https://servers-frontend.fivem.net/api/servers/single/51.77.27.175:30195")
 .then(res => res.json())
 .then(data => {
 
-document.getElementById("players").innerText =
-data.Data.clients;
+document.getElementById("players").innerText = data.Data.clients
 
 })
 .catch(() => {
 
-document.getElementById("players").innerText = "0";
+document.getElementById("players").innerText = "0"
 
-});
+})
 
 </script>
 
