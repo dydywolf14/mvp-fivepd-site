@@ -104,6 +104,11 @@ margin:10px;
 display:inline-block;
 background:#28a745;
 color:white;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 /* TIKTOK */
@@ -140,6 +145,11 @@ margin-top:40px;
 
 .card{
 width:350px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
 }
 
 .card h3{
@@ -149,6 +159,8 @@ font-size:26px;
 
 .card img{
 width:100%;
+height:220px;
+object-fit:cover;
 border-radius:12px;
 }
 
@@ -226,7 +238,7 @@ MVP | FivePD est un serveur réaliste, avec un RP sérieux. Nous proposons aux j
 
 <div class="players-box">
 
-👥 <span id="players">0</span> / 64
+👥 <span id="players">Chargement...</span> / 64
 
 </div>
 
@@ -260,7 +272,7 @@ Demande de déban
 
 <h3>Ton histoire</h3>
 
-<img src="histoire.png">
+<img src="illegal.png">
 
 </div>
 
@@ -268,7 +280,7 @@ Demande de déban
 
 <h3>Ton expérience</h3>
 
-<img src="experience.png">
+<img src="medecine.png">
 
 </div>
 
@@ -276,7 +288,7 @@ Demande de déban
 
 <h3>Ton serveur de jeu</h3>
 
-<img src="serveur.png">
+<img src="police.png">
 
 </div>
 
@@ -304,12 +316,15 @@ MVP | FivePD • Serveur Roleplay Français
 
 const serverIP = "51.77.27.175:30195";
 
-fetch(`https://servers-frontend.fivem.net/api/servers/single/${serverIP}`)
+fetch("https://servers-frontend.fivem.net/api/servers/single/" + serverIP)
 .then(res => res.json())
 .then(data => {
 
-document.getElementById("players").innerText =
-data.Data.clients;
+if(data && data.Data){
+
+document.getElementById("players").innerText = data.Data.clients;
+
+}
 
 })
 .catch(() => {
