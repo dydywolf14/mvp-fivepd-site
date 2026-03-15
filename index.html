@@ -75,7 +75,21 @@ font-size:18px;
 line-height:1.7;
 }
 
-/* BUTTONS */
+/* PLAYERS */
+
+.players-box{
+background:#1f4ed8;
+padding:12px 30px;
+border-radius:8px;
+font-size:22px;
+font-weight:bold;
+display:inline-flex;
+align-items:center;
+gap:10px;
+margin-top:25px;
+}
+
+/* BUTTON */
 
 .buttons{
 margin-top:30px;
@@ -88,14 +102,6 @@ text-decoration:none;
 font-weight:bold;
 margin:10px;
 display:inline-block;
-}
-
-.join{
-background:#1f4ed8;
-color:white;
-}
-
-.deban{
 background:#28a745;
 color:white;
 }
@@ -149,13 +155,15 @@ MVP | FivePD est un serveur réaliste, avec un RP sérieux. Nous proposons aux j
 
 </p>
 
+<div class="players-box">
+
+👥 <span id="players">0</span>
+
+</div>
+
 <div class="buttons">
 
-<a class="btn join" href="fivem://connect/TONIP">
-Deviens citoyen →
-</a>
-
-<a class="btn deban" href="deban.html">
+<a class="btn" href="deban.html">
 Demande de déban
 </a>
 
@@ -168,6 +176,26 @@ Demande de déban
 MVP | FivePD • Serveur Roleplay Français
 
 </footer>
+
+<script>
+
+const serverIP = "TONIP:30120";
+
+fetch(`https://servers-frontend.fivem.net/api/servers/single/${serverIP}`)
+.then(res => res.json())
+.then(data => {
+
+document.getElementById("players").innerText =
+data.Data.clients;
+
+})
+.catch(() => {
+
+document.getElementById("players").innerText = "0";
+
+});
+
+</script>
 
 </body>
 </html>
