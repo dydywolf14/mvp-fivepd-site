@@ -105,10 +105,12 @@ display:inline-block;
 background:#28a745;
 color:white;
 transition:0.3s;
+box-shadow:0 0 15px rgba(0,255,100,0.5);
 }
 
 .btn:hover{
-transform:scale(1.05);
+transform:scale(1.08);
+box-shadow:0 0 25px rgba(0,255,100,0.8);
 }
 
 /* TIKTOK */
@@ -238,7 +240,7 @@ MVP | FivePD est un serveur réaliste, avec un RP sérieux. Nous proposons aux j
 
 <div class="players-box">
 
-👥 <span id="players">Chargement...</span> / 64
+👥 <span id="players">Chargement...</span> / 64 joueurs
 
 </div>
 
@@ -276,7 +278,7 @@ Demande de déban
 
 <h3>Ton histoire</h3>
 
-<img src="illegal.png">
+<img src="illégal.png">
 
 </div>
 
@@ -284,7 +286,7 @@ Demande de déban
 
 <h3>Ton expérience</h3>
 
-<img src="medecine.png">
+<img src="Medecine.png">
 
 </div>
 
@@ -318,13 +320,13 @@ MVP | FivePD • Serveur Roleplay Français
 
 <script>
 
-/* compteur joueurs FiveM FIX */
+/* COMPTEUR JOUEURS FIX */
 
-fetch("https://api.allorigins.win/raw?url=http://51.77.27.175:30195/info.json")
+fetch("https://api.allorigins.win/raw?url=http://51.77.27.175:30195/players.json")
 .then(res => res.json())
 .then(data => {
 
-document.getElementById("players").innerText = data.clients || "0";
+document.getElementById("players").innerText = data.length;
 
 })
 .catch(() => {
