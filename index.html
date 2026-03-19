@@ -244,6 +244,10 @@ MVP | FivePD est un serveur réaliste, avec un RP sérieux. Nous proposons aux j
 
 <div class="buttons">
 
+<a class="btn" href="fivem://connect/51.77.27.175:30195">
+Rejoindre le serveur
+</a>
+
 <a class="btn" href="deban.html">
 Demande de déban
 </a>
@@ -272,7 +276,7 @@ Demande de déban
 
 <h3>Ton histoire</h3>
 
-<img src="illegal.png">
+<img src="illégal.png">
 
 </div>
 
@@ -280,7 +284,7 @@ Demande de déban
 
 <h3>Ton expérience</h3>
 
-<img src="medecine.png">
+<img src="Medecine.png">
 
 </div>
 
@@ -314,17 +318,13 @@ MVP | FivePD • Serveur Roleplay Français
 
 <script>
 
-const serverIP = "51.77.27.175:30195";
+/* compteur joueurs FiveM FIX */
 
-fetch("https://servers-frontend.fivem.net/api/servers/single/" + serverIP)
+fetch("https://api.allorigins.win/raw?url=http://51.77.27.175:30195/info.json")
 .then(res => res.json())
 .then(data => {
 
-if(data && data.Data){
-
-document.getElementById("players").innerText = data.Data.clients;
-
-}
+document.getElementById("players").innerText = data.clients || "0";
 
 })
 .catch(() => {
