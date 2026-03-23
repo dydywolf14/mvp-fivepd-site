@@ -36,7 +36,7 @@ gap:10px;
 height:55px;
 }
 
-/* NOUVEAU STYLE LOGO */
+/* LOGO STYLE */
 
 .logo-text{
 font-size:28px;
@@ -49,11 +49,31 @@ letter-spacing:2px;
 text-shadow:0 0 10px rgba(255,0,100,0.6);
 }
 
+/* NAV */
+
+nav{
+display:flex;
+align-items:center;
+}
+
 nav a{
 color:white;
 margin-left:25px;
 text-decoration:none;
 font-weight:bold;
+}
+
+/* ICON HOME */
+
+.home-img{
+width:22px;
+margin-right:10px;
+filter:invert(1);
+transition:0.3s;
+}
+
+.home-img:hover{
+transform:scale(1.2);
 }
 
 /* HERO */
@@ -288,8 +308,14 @@ margin-top:40px;
 </div>
 
 <nav>
+
+<a href="index.html">
+<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" class="home-img">
+</a>
+
 <a href="index.html">Accueil</a>
 <a href="deban.html">Déban</a>
+
 </nav>
 
 </header>
