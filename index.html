@@ -63,17 +63,55 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* ICON HOME */
+/* MENU BUTTON */
 
-.home-img{
-width:22px;
-margin-right:10px;
-filter:invert(1);
-transition:0.3s;
+.menu-btn{
+font-size:26px;
+margin-left:20px;
+cursor:pointer;
 }
 
-.home-img:hover{
-transform:scale(1.2);
+/* MENU LATÉRAL */
+
+.side-menu{
+position:fixed;
+top:0;
+right:-300px;
+width:300px;
+height:100%;
+background:#04152d;
+padding:30px;
+transition:0.4s;
+z-index:1000;
+display:flex;
+flex-direction:column;
+}
+
+.side-menu a{
+color:white;
+text-decoration:none;
+margin:15px 0;
+font-size:18px;
+}
+
+.side-menu.active{
+right:0;
+}
+
+.close-btn{
+font-size:22px;
+align-self:flex-end;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.menu-title{
+margin-bottom:20px;
+}
+
+.side-menu hr{
+border:1px solid rgba(255,255,255,0.2);
+margin:20px 0;
 }
 
 /* HERO */
@@ -308,26 +346,40 @@ margin-top:40px;
 </div>
 
 <nav>
-
-<a href="index.html">
-<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" class="home-img">
-</a>
-
 <a href="index.html">Accueil</a>
 <a href="deban.html">Déban</a>
-
+<div class="menu-btn" onclick="openMenu()">☰</div>
 </nav>
 
 </header>
+
+<!-- MENU LATÉRAL -->
+
+<div id="sideMenu" class="side-menu">
+
+<div class="close-btn" onclick="closeMenu()">✖</div>
+
+<h2 class="menu-title">MVP | FivePD</h2>
+
+<a href="index.html">Accueil</a>
+<a href="fivem://connect/51.77.27.175:30195">Rejoindre le serveur</a>
+<a href="reglement.html">Règlement</a>
+<a href="https://discord.gg/TONDISCORD">Discord</a>
+
+<hr>
+
+<a href="deban.html">Je suis banni(e)</a>
+
+</div>
 
 <section class="hero">
 
 <h1>Bienvenue sur MVP | FivePD</h1>
 
 <p class="description">
-MVP | FivePD est un serveur GTA 5 RP / FiveM Free-Accès Français basé sur la ville de Marseille avec 64 slots.
+MVP | FivePD est un serveur GTA 5 RP / FiveM Free-Accès Français basé sur Marseille avec 64 slots.
 <br><br>
-MVP | FivePD est un serveur réaliste, avec un RP sérieux.
+Serveur réaliste avec RP sérieux.
 </p>
 
 <div class="players-box">
@@ -444,6 +496,14 @@ MVP | FivePD • Serveur Roleplay Français
 </footer>
 
 <script>
+
+function openMenu(){
+document.getElementById("sideMenu").classList.add("active");
+}
+
+function closeMenu(){
+document.getElementById("sideMenu").classList.remove("active");
+}
 
 fetch("https://api.allorigins.win/raw?url=http://51.77.27.175:30195/players.json")
 .then(res => res.json())
