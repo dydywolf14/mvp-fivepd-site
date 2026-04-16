@@ -37,6 +37,37 @@ text-decoration:none;
 font-weight:bold;
 }
 
+/* BREADCRUMB */
+
+.breadcrumb{
+width:85%;
+margin:20px auto 0 auto;
+background:#072a52;
+border-radius:40px;
+padding:15px 25px;
+font-size:18px;
+box-sizing:border-box;
+}
+
+.breadcrumb a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.breadcrumb a:hover{
+text-decoration:underline;
+}
+
+.sep{
+margin:0 8px;
+opacity:0.7;
+}
+
+.current{
+font-weight:bold;
+}
+
 .container{
 max-width:900px;
 margin:auto;
@@ -74,6 +105,7 @@ background:#031a33;
 border:1px solid #0a2c52;
 color:white;
 border-radius:6px;
+box-sizing:border-box;
 }
 
 textarea{
@@ -132,6 +164,12 @@ MVP FivePD
 </nav>
 
 </header>
+
+<div class="breadcrumb">
+<a href="index.html">🏠 Accueil</a>
+<span class="sep">/</span>
+<span class="current">Déban</span>
+</div>
 
 <div class="container">
 
