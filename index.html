@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>MVP | FivePD</title>
+<title>Demande de déban | MVP FivePD</title>
 
 <style>
 
@@ -13,8 +13,6 @@ font-family:Arial;
 background:#021b33;
 color:white;
 }
-
-/* HEADER */
 
 header{
 background:#051d44;
@@ -43,31 +41,10 @@ background:linear-gradient(90deg,#6a00ff,#ff2a6d);
 color:transparent;
 }
 
-/* NAV */
-
 nav{
 display:flex;
 align-items:center;
 gap:20px;
-}
-
-.home-btn{
-background:#1f4ed8;
-padding:8px 12px;
-border-radius:10px;
-display:flex;
-align-items:center;
-transition:0.3s;
-}
-
-.home-btn:hover{
-background:#2563eb;
-transform:scale(1.1);
-}
-
-.home-btn img{
-width:18px;
-filter:invert(1);
 }
 
 nav a{
@@ -76,15 +53,37 @@ text-decoration:none;
 font-weight:bold;
 }
 
+.home-btn{
+background:#1f4ed8;
+padding:8px 12px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.3s;
+}
+
+.home-btn:hover{
+background:#2563eb;
+transform:scale(1.08);
+}
+
+.home-btn img{
+width:18px;
+filter:invert(1);
+display:block;
+}
+
 /* BREADCRUMB */
 
 .breadcrumb{
 width:85%;
-margin:20px auto;
+margin:20px auto 0 auto;
 background:#072a52;
 border-radius:40px;
 padding:15px 25px;
 font-size:18px;
+box-sizing:border-box;
 }
 
 .breadcrumb a{
@@ -97,130 +96,89 @@ font-weight:bold;
 text-decoration:underline;
 }
 
-/* HERO */
+.sep{
+margin:0 8px;
+opacity:0.7;
+}
 
-.hero{
-height:700px;
-background:
-linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-url("marseille.png") center/cover no-repeat;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+.current{
+font-weight:bold;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.title{
+text-align:center;
+font-size:32px;
+margin-bottom:20px;
+}
+
+.warning{
+background:#0a2c52;
+padding:15px;
+border-radius:8px;
+margin-bottom:25px;
 text-align:center;
 }
 
-.hero h1{
-font-size:55px;
+form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
 
-.description{
-max-width:900px;
+.full{
+grid-column:1/3;
 }
 
-/* JOUEURS */
+input,textarea{
+width:100%;
+padding:12px;
+background:#031a33;
+border:1px solid #0a2c52;
+color:white;
+border-radius:6px;
+box-sizing:border-box;
+}
 
-.players-box{
-background:#1f4ed8;
-padding:12px 30px;
-border-radius:8px;
+textarea{
+height:150px;
+resize:none;
+}
+
+.counter{
+font-size:14px;
+opacity:0.7;
+margin-top:5px;
+}
+
+.radio{
+grid-column:1/3;
+margin-top:10px;
+}
+
+.checkbox{
+grid-column:1/3;
 margin-top:20px;
-font-size:20px;
 }
 
-/* BUTTON */
-
-.buttons{
-margin-top:30px;
-}
-
-.btn{
-padding:15px 35px;
+button{
+grid-column:1/3;
+padding:14px;
+border:none;
 border-radius:6px;
 background:#28a745;
 color:white;
-text-decoration:none;
-margin:10px;
-display:inline-block;
+font-size:16px;
+cursor:pointer;
 }
 
-/* TIKTOK */
-
-.tiktok{
-margin-top:30px;
-}
-
-.tiktok img{
-width:70px;
-}
-
-/* FEATURES */
-
-.features{
-background:#061a3a;
-padding:80px 20px;
-text-align:center;
-}
-
-.cards{
-display:flex;
-gap:40px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.card{
-width:300px;
-}
-
-.card img{
-width:100%;
-border-radius:10px;
-}
-
-/* TEAM */
-
-.team{
-padding:80px 20px;
-text-align:center;
-background:#04152d;
-}
-
-.team-grid{
-display:flex;
-justify-content:center;
-gap:100px;
-flex-wrap:wrap;
-}
-
-.member img{
-width:80px;
-border-radius:50%;
-}
-
-.role{
-padding:6px 12px;
-border-radius:20px;
-margin:5px;
-display:inline-block;
-}
-
-.red{background:#ff2a6d;}
-.purple{background:#6a00ff;}
-
-.separator{
-margin:40px auto;
-width:60%;
-border:1px solid rgba(255,255,255,0.2);
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:20px;
-background:#051d44;
+.hidden{
+display:none;
 }
 
 </style>
@@ -248,123 +206,187 @@ background:#051d44;
 
 </header>
 
-<!-- BREADCRUMB CLIQUABLE -->
-
 <div class="breadcrumb">
 <a href="index.html">🏠 Accueil</a>
+<span class="sep">/</span>
+<span class="current">Déban</span>
 </div>
 
-<!-- HERO -->
+<div class="container">
 
-<section class="hero">
-
-<h1>Bienvenue sur MVP | FivePD</h1>
-
-<p class="description">
-Serveur GTA RP basé sur Marseille avec 64 slots.
-</p>
-
-<div class="players-box">
-👥 <span id="players">0</span> / 64 joueurs
+<div class="title">
+🔨 Demande de déban
 </div>
 
-<div class="buttons">
-<a class="btn" href="fivem://connect/51.77.27.175:30195">Rejoindre</a>
-<a class="btn" href="deban.html">Déban</a>
+<div class="warning">
+Ce formulaire est réservé aux bans attribués par un membre du staff.<br>
+Si votre bannissement concerne un anti-cheat, la demande sera automatiquement refusée par le staff.
+La réponse de votre ban sera mis dans le salon résultats Deban.
 </div>
 
-<div class="tiktok">
-<a href="https://www.tiktok.com/@mvp_fivepd">
-<img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
-</a>
-</div>
+<form id="debanForm">
 
-</section>
+<input type="text" id="discord" placeholder="Pseudo Discord" required>
 
-<!-- FEATURES -->
+<input type="text" id="raison" placeholder="Raison du bannissement" required>
 
-<section class="features">
+<input type="text" id="staff" placeholder="Staff qui vous a banni" required>
 
-<h2>Découvre notre serveur</h2>
+<div class="radio">
 
-<div class="cards">
+<label>Type de bannissement :</label><br><br>
 
-<div class="card">
-<h3>Ton histoire</h3>
-<img src="illegal.png">
-</div>
-
-<div class="card">
-<h3>Ton expérience</h3>
-<img src="medecine.png">
-</div>
-
-<div class="card">
-<h3>Ton serveur de jeu</h3>
-<img src="police.png">
-</div>
+<input type="radio" name="ban" value="Permanent" onclick="toggleDate()" required> Permanent
+<br><br>
+<input type="radio" name="ban" value="Définitif" onclick="toggleDate()"> Définitif
 
 </div>
 
-</section>
+<div id="dateBan" class="full hidden">
 
-<!-- TEAM -->
+<label>Date de votre ban</label>
+<input type="date" id="date">
 
-<section class="team">
-
-<h2>L'équipe MVP</h2>
-
-<div class="team-grid">
-
-<div class="member">
-<img src="logo.png">
-<h3>@dydy-wolf</h3>
-<span class="role red">Fondateur</span>
-<span class="role purple">Développeur</span>
 </div>
 
-<div class="member">
-<img src="logo.png">
-<h3>@abdels71</h3>
-<span class="role red">Fondateur</span>
+<div class="full">
+
+<label>Capture du ban txAdmin</label>
+
+<input type="file" id="preuve" accept="image/*,.pdf" required>
+
+</div>
+
+<div class="full">
+
+<label>Vos motivations pour revenir sur le serveur</label>
+
+<textarea id="motivation" required></textarea>
+
+<div class="counter" id="counter1">
+Minimum 150 caractères
 </div>
 
 </div>
 
-<hr class="separator">
+<div class="full">
 
-<div class="team-grid">
+<label>Pourquoi devrions-nous lever la sanction ?</label>
 
-<div class="member">
-<img src="logo.png">
-<h3>@noa</h3>
-<span class="role red">Co-Fondateur</span>
-</div>
+<textarea id="confiance" required></textarea>
 
-<div class="member">
-<img src="logo.png">
-<h3>@ronflex</h3>
-<span class="role red">Co-Fondateur</span>
-<span class="role purple">Développeur</span>
+<div class="counter" id="counter2">
+Minimum 150 caractères
 </div>
 
 </div>
 
-</section>
+<div class="checkbox">
 
-<footer>
-MVP | FivePD
-</footer>
+<input type="checkbox" id="confirm" required>
+
+<label for="confirm">
+J'ai relu le règlement dans son intégralité et j'ai compris la raison de la sanction.
+</label>
+
+</div>
+
+<button type="submit">
+ENVOYER MA DEMANDE
+</button>
+
+</form>
+
+</div>
 
 <script>
 
-fetch("https://api.allorigins.win/raw?url=http://51.77.27.175:30195/players.json")
-.then(res => res.json())
-.then(data => {
-document.getElementById("players").innerText = data.length;
-})
-.catch(() => {
-document.getElementById("players").innerText = "0";
+const webhook = "https://discordapp.com/api/webhooks/1494068133978177617/QK4374wLJ2l2Yc7Bho6kdBVlq912C2AkYx6KV88K2LSpA7BkvAPbKd4YlveM-qZIoSPO";
+
+function toggleDate(){
+const selected = document.querySelector('input[name="ban"]:checked');
+if(!selected) return;
+
+if(selected.value === "Permanent"){
+document.getElementById("dateBan").classList.remove("hidden");
+}else{
+document.getElementById("dateBan").classList.add("hidden");
+}
+}
+
+const motivation = document.getElementById("motivation");
+const confiance = document.getElementById("confiance");
+
+const counter1 = document.getElementById("counter1");
+const counter2 = document.getElementById("counter2");
+
+motivation.addEventListener("input", () => {
+let remaining = 150 - motivation.value.length;
+
+counter1.innerText = remaining > 0
+? "Encore " + remaining + " caractères minimum"
+: "Minimum atteint";
+});
+
+confiance.addEventListener("input", () => {
+let remaining = 150 - confiance.value.length;
+
+counter2.innerText = remaining > 0
+? "Encore " + remaining + " caractères minimum"
+: "Minimum atteint";
+});
+
+document.getElementById("debanForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+if(motivation.value.length < 150){
+alert("Les motivations doivent contenir au moins 150 caractères.");
+return;
+}
+
+if(confiance.value.length < 150){
+alert("La justification doit contenir au moins 150 caractères.");
+return;
+}
+
+if(!document.getElementById("confirm").checked){
+alert("Vous devez confirmer avoir lu le règlement.");
+return;
+}
+
+const discord = document.getElementById("discord").value;
+const raison = document.getElementById("raison").value;
+const staff = document.getElementById("staff").value;
+const date = document.getElementById("date").value;
+const file = document.getElementById("preuve").files[0];
+
+const formData = new FormData();
+
+formData.append("payload_json", JSON.stringify({
+content:"📩 Nouvelle demande de déban",
+embeds:[{
+title:"Demande de déban MVP FivePD",
+fields:[
+{name:"Discord",value:discord},
+{name:"Raison du ban",value:raison},
+{name:"Staff",value:staff},
+{name:"Date du ban",value:date || "Définitif"},
+{name:"Motivations",value:motivation.value},
+{name:"Pourquoi lever la sanction",value:confiance.value}
+]
+}]
+}));
+
+formData.append("file", file);
+
+fetch(webhook,{
+method:"POST",
+body:formData
+});
+
+alert("Demande envoyée au staff.");
+
 });
 
 </script>
