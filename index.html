@@ -87,6 +87,16 @@ padding:15px 25px;
 font-size:18px;
 }
 
+.breadcrumb a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.breadcrumb a:hover{
+text-decoration:underline;
+}
+
 /* HERO */
 
 .hero{
@@ -238,10 +248,10 @@ background:#051d44;
 
 </header>
 
-<!-- BREADCRUMB -->
+<!-- BREADCRUMB CLIQUABLE -->
 
 <div class="breadcrumb">
-🏠 Accueil
+<a href="index.html">🏠 Accueil</a>
 </div>
 
 <!-- HERO -->
@@ -352,6 +362,9 @@ fetch("https://api.allorigins.win/raw?url=http://51.77.27.175:30195/players.json
 .then(res => res.json())
 .then(data => {
 document.getElementById("players").innerText = data.length;
+})
+.catch(() => {
+document.getElementById("players").innerText = "0";
 });
 
 </script>
